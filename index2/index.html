@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wuthering Waves - Registro e Inicio de Sesión</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+        header nav ul li {
+            margin: 0 15px;
+        }
+        header nav ul li a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .hero {
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .hero-text h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .hero-text p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        #login-form, #register-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px;
+        }
+        #login-form input, #register-form input {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        #login-form button, #register-form button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        #formResult, #error-message, #register-message {
+            color: red;
+        }
+        section {
+            padding: 2em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em;
+            text-align: center;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <ul>
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#about">Sobre Nosotros</a></li>
+            <li><a href="#characters">Personajes</a></li>
+            <li><a href="#register">Registro</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Bienvenido a Wuthering Waves</h1>
+            <p>Únete a nuestra comunidad y mantente informado sobre las últimas novedades.</p>
+            <a href="#register" class="btn">Regístrate Ahora</a>
+        </div>
+    </div>
+</header>
+
+<section id="about">
+    <h2>Sobre Nosotros</h2>
+    <p>En el mundo de Wuthering Waves, un lugar donde la magia y la tecnología coexisten...</p>
+</section>
+
+<section id="characters">
+    <h2>Personajes</h2>
+    <div class="character">
+        <img src="img/chixia-image.webp" alt="Chixia" class="character-image">
+        <div class="character-text">
+            <h3>Chixia</h3>
+            <p>Chixia es una guerrera intrépida conocida por su valentía...</p>
+        </div>
+    </div>
+    <div class="character">
+        <img src="img/T_IconRole_Pile_bailian_UI.png" alt="Baizhi" class="character-image">
+        <div class="character-text">
+            <h3>Baizhi</h3>
+            <p>Baizhi es una persona conocida por su sabiduría...</p>
+        </div>
+    </div>
+    <div class="character">
+        <img src="img/yang_card.webp" alt="Yangyang" class="character-image">
+        <div class="character-text">
+            <h3>Yangyang</h3>
+            <p>Yangyang es el miembro más joven y enérgico del grupo...</p>
+        </div>
+    </div>
+</section>
+
+<section id="register">
+    <h2>Regístrate</h2>
+    <form id="registerForm" onsubmit="validateForm(event)">
+        <div class="form-group">
+            <label for="first-name">Nombre:</label>
+            <input type="text" id="first-name" name="first-name" placeholder="Introduce tu nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="last-name">Apellido:</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Introduce tu apellido" required>
+        </div>
+        <div class="form-group">
+            <label for="birth-date">Fecha de nacimiento:</label>
+            <input type="text" id="birth-date" name="birth-date" placeholder="DD/MM/YYYY" required>
+        </div>
+        <div class="form-group">
+            <label for="new-password">Contraseña:</label>
+            <input type="password" id="new-password" name="new-password" placeholder="Introduce una contraseña" required>
+        </div>
+        <button type="submit">Registrarse</button>
+    </form>
+    <p id="register-message"></p>
+</section>
+
+<!-- Formulario de Registro e Inicio de Sesión -->
+<section id="login">
+    <div id="login-form" style="display: none;">
+        <h2>Inicio de Sesión</h2>
+        <input type="text" id="username" placeholder="Correo electrónico">
+        <input type="password" id="password" placeholder="Contraseña">
+        <button onclick="login()">Iniciar Sesión</button>
+        <p id="error-message" style="color: red;"></p>
+    </div>
+
+    <div id="landing-page" style="display: none;">
+        <header>
+            <h1>Bienvenido a Nuestra Página</h1>
+        </header>
+        <section>
+            <h2>Sobre Nosotros</h2>
+            <p>Esta es una página de ejemplo para mostrar cómo funciona el sistema de inicio de sesión.</p>
+            <p>Hemos creado esta landing page básica con HTML y algo de CSS embebido.</p>
+        </section>
+        <footer>
+            <p>&copy; 2024 Mi Empresa. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contacto</h2>
+    <p>Para más información, contáctanos en info@wutheringwaves.com.</p>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/WutheringWaves.Official" target="_blank">
+            <img src="img/descarga.png" alt="Facebook">
+        </a>
+        <a href="https://twitter.com/Wuthering_Waves" target="_blank">
+            <img src="img/xWVjuc9hryql.gif" alt="Twitter">
+        </a>
+        <a href="https://www.instagram.com/wuthering_waves" target="_blank">
+            <img src="img/descarga (1).png" alt="Instagram">
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 Wuthering Waves. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    let attempts = 0;
+
+    function register() {
+        const firstName = document.getElementById("first-name").value;
+        const lastName = document.getElementById("last-name").value;
+        const birthDate = document.getElementById("birth-date").value;
+        const newPassword = document.getElementById("new-password").value;
+        const registerMessage = document.getElementById("register-message");
+
+        if (firstName && lastName && birthDate && newPassword) {
+            registerMessage.textContent = "¡Registro exitoso! Ahora puedes iniciar sesión.";
+            registerMessage.style.color = "green";
+            attempts = 0;
+            showLoginForm();
+        } else {
+            registerMessage.textContent = "Por favor, completa todos los campos.";
+            registerMessage.style.color = "red";
+        }
+    }
+
+    function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const errorMessage = document.getElementById("error-message");
+
+        if (attempts >= 3) {
+            errorMessage.textContent = "Has superado el límite de intentos.";
+            return;
+        }
+
+        if (username === "admin" && password === "admin123") {
+            showLandingPage();
+        } else {
+            attempts++;
+            errorMessage.textContent = "Nombre de usuario o contraseña incorrectos. Intentos restantes: " + (3 - attempts);
+        }
+    }
+
+    function showLoginForm() {
+        document.getElementById("register-form").style.display = "none";
+        document.getElementById("login-form").style.display = "block";
+    }
+
+    function showLandingPage() {
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("landing-page").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
